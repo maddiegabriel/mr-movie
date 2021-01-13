@@ -13,14 +13,9 @@ const Search = (props) => {
     props.search(searchTerm);
   }
 
-  const resetInputField = () => {
-    setSearchTerm("")
-  }
-
   const submitSearch = (e) => {
     e.preventDefault();
     props.search(searchTerm);
-    resetInputField();
   }
 
   const useStyles = makeStyles((theme) => ({
@@ -28,7 +23,7 @@ const Search = (props) => {
       padding: '10px 4px',
       display: 'flex',
       alignItems: 'center',
-      width: 800,
+      width: '70%',
       position: 'absolute',
       left: '50%',
       transform: 'translate(-50%, -50%)',

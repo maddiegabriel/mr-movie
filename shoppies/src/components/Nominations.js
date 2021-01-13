@@ -6,16 +6,21 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import CardHeader from '@material-ui/core/CardHeader';
 
 const Nominations = (props) => {
-  console.log(props)
+
   const useStyles = makeStyles((theme) => ({
     card: {
-      marginTop: '10%',
       padding: '10px 4px',
       boxShadow: '2px 4px 6px 4px #ccc',
     },
+    title: {
+      position: 'sticky',
+    },
     nominations: {
+      height: '45vh',
+      overflow: 'scroll',
     }
   }));
 
@@ -23,10 +28,8 @@ const Nominations = (props) => {
 
   return (
     <Card className={classes.card}>
+      <CardHeader className={classes.title} title="Your Shoppies Nominations" />
       <CardContent>
-        <Typography component="h5" variant="h5">
-            Your Shoppies Nominations
-        </Typography>
         <List className={classes.nominations}>
           <ListItem>
             <ListItemText primary="You haven't nominated any movies yet... get to work!" />

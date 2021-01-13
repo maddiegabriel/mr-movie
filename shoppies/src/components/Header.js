@@ -8,6 +8,8 @@ const Header = () => {
   const useStyles = makeStyles(() => ({
     head: {
       backgroundImage: `url(${Image})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
       minHeight: '50vh',
       width: '100%',
     },

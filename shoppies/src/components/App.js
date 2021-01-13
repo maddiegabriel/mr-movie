@@ -72,11 +72,13 @@ const App = () => {
       results: {
         flexGrow: 1,
         width: '90%',
-        top: '65vh',
         position: 'absolute',
         left: '50%',
         transform: 'translate(-50%, -50%)',  
-      }
+      },
+      divider: {
+        height: '40vh',
+      },
     }));
   
     const classes = useStyles();
@@ -86,6 +88,7 @@ const App = () => {
       <div className={classes.root}>
         <Header />
         <Search search={search} />
+        <div className={classes.divider}></div>
         <div className={classes.results}>
           <Grid container spacing={3}>
             <Grid item xs={6}>
