@@ -23,12 +23,11 @@ const reducer = (state, action) => {
         errorMessage: null
       };
     case "SEARCH_MOVIES_SUCCESS":
-      console.log("payload")
-      console.log(action.payload[0].Runtime)
       return {
         ...state,
         loading: false,
-        movies: action.payload
+        movies: action.payload,
+        nominations: action.payload
       };
     case "SEARCH_MOVIES_FAILURE":
       return {

@@ -3,14 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import CardHeader from '@material-ui/core/CardHeader';
+import NomineeCard from "./NomineeCard";
 
 const Nominations = (props) => {
 
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(() => ({
     card: {
       padding: '10px 4px',
       boxShadow: '2px 4px 6px 4px #ccc',
@@ -31,9 +30,13 @@ const Nominations = (props) => {
       <CardHeader className={classes.title} title="Your Shoppies Nominations" />
       <CardContent>
         <List className={classes.nominations}>
-          <ListItem>
-            <ListItemText primary="You haven't nominated any movies yet... get to work!" />
-          </ListItem>
+          {(
+            props.nominations.map((nominee, index) => (
+              <ListItem className={classes.result}>
+                <NomineeCard title={nominee.Title} year={nominee.Year} poster={nominee.Poster}/>
+              </ListItem>
+            ))
+          )}
         </List>
       </CardContent>
     </Card>
