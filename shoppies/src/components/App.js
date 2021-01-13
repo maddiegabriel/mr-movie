@@ -23,6 +23,8 @@ const reducer = (state, action) => {
         errorMessage: null
       };
     case "SEARCH_MOVIES_SUCCESS":
+      console.log("payload")
+      console.log(action.payload[0].Runtime)
       return {
         ...state,
         loading: false,
@@ -48,7 +50,7 @@ const App = () => {
       type: "SEARCH_MOVIES_REQUEST"
     });
 
-    fetch(`https://www.omdbapi.com/?s=${searchTerm}&apikey=2259721`)
+    fetch(`http://www.omdbapi.com/?apikey=2259721&s=${searchTerm}&type=movie`)
       .then(response => response.json())
       .then(jsonResponse => {
         if (jsonResponse.Response === "True") {
@@ -83,6 +85,8 @@ const App = () => {
   
     const classes = useStyles();
     const { movies, errorMessage, loading, nominations } = state;
+    console.log("MOVIES RESULT!!!")
+    console.log(movies);
     
     return (
       <div className={classes.root}>

@@ -27,6 +27,7 @@ const Search = (props) => {
       position: 'absolute',
       left: '50%',
       transform: 'translate(-50%, -50%)',
+      marginTop: '-70px',
     },
     input: {
       marginLeft: theme.spacing(1),

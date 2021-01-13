@@ -3,8 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import StarsIcon from '@material-ui/icons/Stars';
+import Button from '@material-ui/core/Button';
 
 const MovieCard = (props) => {
 
@@ -12,6 +13,7 @@ const useStyles = makeStyles(() => ({
     root: {
       display: 'flex',
       width: '100%',
+      boxShadow: '2px 4px 6px 4px #ccc',
     },
     details: {
       width: '70%',
@@ -24,6 +26,13 @@ const useStyles = makeStyles(() => ({
     },
     image: {
       width: '30%',
+    },
+    button: {
+      marginTop: '30px',
+      backgroundColor: '#96BF48',
+      '&:hover': {
+        backgroundColor: '#5E8E3E',
+      }
     },
   }));
 
@@ -39,6 +48,15 @@ const useStyles = makeStyles(() => ({
           <Typography variant="subtitle1" color="textSecondary">
             {props.year}
           </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.button}
+            startIcon={<StarsIcon />}
+          >
+            Nominate
+          </Button>
         </CardContent>
       </div>
       <CardMedia

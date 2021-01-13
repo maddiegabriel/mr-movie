@@ -3,16 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import CardHeader from '@material-ui/core/CardHeader';
 import MovieCard from "./MovieCard";
 
 const SearchResults = (props) => {
   console.log(props)
 
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(() => ({
     card: {
       padding: '10px 4px',
       boxShadow: '2px 4px 6px 4px #ccc',
@@ -23,7 +21,11 @@ const SearchResults = (props) => {
     results: {
       height: '45vh',
       overflow: 'scroll',
-    }
+      paddingLeft: '0',
+    },
+    result: {
+      paddingLeft: '2px',
+    },
   }));
 
   const classes = useStyles();
@@ -35,7 +37,7 @@ const SearchResults = (props) => {
         <List className={classes.results}>
           {(
             props.movies.map((movie, index) => (
-              <ListItem>
+              <ListItem className={classes.result}>
                 <MovieCard title={movie.Title} year={movie.Year} poster={movie.Poster}/>
               </ListItem>
             ))

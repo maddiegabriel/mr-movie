@@ -10,7 +10,7 @@ const Header = () => {
       backgroundImage: `url(${Image})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      minHeight: '50vh',
+      minHeight: '46vh',
       width: '100%',
     },
   }));
