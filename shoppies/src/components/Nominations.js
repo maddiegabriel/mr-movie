@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-const SearchResults = (props) => {
+const Nominations = (props) => {
   console.log(props)
   const useStyles = makeStyles((theme) => ({
     card: {
@@ -15,7 +15,7 @@ const SearchResults = (props) => {
       padding: '10px 4px',
       boxShadow: '2px 4px 6px 4px #ccc',
     },
-    results: {
+    nominations: {
     }
   }));
 
@@ -25,20 +25,16 @@ const SearchResults = (props) => {
     <Card className={classes.card}>
       <CardContent>
         <Typography component="h5" variant="h5">
-          Movie Search Results
+            Your Shoppies Nominations
         </Typography>
-        <List className={classes.results}>
-          {(
-            props.movies.map((movie, index) => (
-              <ListItem>
-                <ListItemText primary={movie.Title}/>
-              </ListItem>
-            ))
-          )}
+        <List className={classes.nominations}>
+          <ListItem>
+            <ListItemText primary="You haven't nominated any movies yet... get to work!" />
+          </ListItem>
         </List>
       </CardContent>
     </Card>
   );
 }
 
-export default SearchResults;
+export default Nominations;

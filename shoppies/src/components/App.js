@@ -1,17 +1,16 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer } from "react";
 import "../App.css";
 import Header from "./Header";
 import Search from "./Search";
 import SearchResults from "./SearchResults";
+import Nominations from "./Nominations";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-
-const OMDB_API_URL = "https://www.omdbapi.com/?s=alice&apikey=2259721";
 
 const initialState = {
   loading: true,
   movies: [],
+  nominations: [],
   errorMessage: null
 };
 
@@ -42,22 +41,8 @@ const reducer = (state, action) => {
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  let term;
-
-  useEffect(() => {
-      fetch(OMDB_API_URL)
-          .then(response => response.json())
-          .then(jsonResponse => {
-      
-          dispatch({
-              type: "SEARCH_MOVIES_SUCCESS",
-              payload: jsonResponse.Search
-        });
-      });
-  }, []);
 
   const search = searchTerm => {
-    term = searchTerm;
   
     dispatch({
       type: "SEARCH_MOVIES_REQUEST"
@@ -86,11 +71,16 @@ const App = () => {
       },
       results: {
         flexGrow: 1,
+        width: '90%',
+        top: '65vh',
+        position: 'absolute',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',  
       }
     }));
   
     const classes = useStyles();
-    const { movies, errorMessage, loading } = state;
+    const { movies, errorMessage, loading, nominations } = state;
     
     return (
       <div className={classes.root}>
@@ -98,11 +88,11 @@ const App = () => {
         <Search search={search} />
         <div className={classes.results}>
           <Grid container spacing={3}>
-            <Grid item xs={8}>
-              <SearchResults term={term} movies={movies} errorMessage={errorMessage} loading={loading} />
+            <Grid item xs={6}>
+              <SearchResults movies={movies} errorMessage={errorMessage} loading={loading} />
             </Grid>
-            <Grid item xs={4}>
-              <SearchResults term={term} movies={movies} errorMessage={errorMessage} loading={loading} />
+            <Grid item xs={6}>
+              <Nominations nominations={nominations} />
             </Grid>
           </Grid>
         </div>
