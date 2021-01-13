@@ -2,7 +2,10 @@ import React, { useReducer, useEffect } from "react";
 import "../App.css";
 import Header from "./Header";
 import Search from "./Search";
+import SearchResults from "./SearchResults";
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 const OMDB_API_URL = "https://www.omdbapi.com/?s=alice&apikey=2259721";
 
@@ -79,10 +82,11 @@ const App = () => {
     
     const useStyles = makeStyles(() => ({
       root: {
-        alignItems: 'center',
-        textAlign: 'center',
         backgroundColor: '#fcfcfc',
       },
+      results: {
+        flexGrow: 1,
+      }
     }));
   
     const classes = useStyles();
@@ -92,6 +96,16 @@ const App = () => {
       <div className={classes.root}>
         <Header />
         <Search search={search} />
+        <div className={classes.results}>
+          <Grid container spacing={3}>
+            <Grid item xs={8}>
+              <SearchResults term={term} movies={movies} errorMessage={errorMessage} loading={loading} />
+            </Grid>
+            <Grid item xs={4}>
+              <SearchResults term={term} movies={movies} errorMessage={errorMessage} loading={loading} />
+            </Grid>
+          </Grid>
+        </div>
       </div>
     );
 };
