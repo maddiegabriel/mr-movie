@@ -10,36 +10,24 @@ import Grid from '@material-ui/core/Grid';
 const initialState = {
   loading: true,
   movies: [],
-  nominations: [{
-    "tt1131729": {
-      "Year": 2009,
-      "Title": "first one",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMTMzMjYzMTMyM15BMl5BanBnXkFtZTcwOTk5NDA5Mg@@._V1_SX300.jpg"
-    },
-    "tt2608732": {
-      "Year": 2013,
-      "Title": "second one",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMTMzMjYzMTMyM15BMl5BanBnXkFtZTcwOTk5NDA5Mg@@._V1_SX300.jpg"
-    }
-  }],
   errorMessage: null
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "SEARCH_MOVIES_REQUEST":
+    case "REQ":
       return {
         ...state,
         loading: true,
         errorMessage: null
       };
-    case "SEARCH_MOVIES_SUCCESS":
+    case "PASS":
       return {
         ...state,
         loading: false,
         movies: action.payload
       };
-    case "SEARCH_MOVIES_FAILURE":
+    case "FAIL":
       return {
         ...state,
         loading: false,
@@ -56,7 +44,7 @@ const App = () => {
   const search = searchTerm => {
 
     dispatch({
-      type: "SEARCH_MOVIES_REQUEST"
+      type: "REQ"
     });
 
     fetch(`http://www.omdbapi.com/?apikey=2259721&s=${searchTerm}&type=movie`)
@@ -64,12 +52,12 @@ const App = () => {
       .then(jsonResponse => {
         if (jsonResponse.Response === "True") {
           dispatch({
-              type: "SEARCH_MOVIES_SUCCESS",
+              type: "PASS",
               payload: jsonResponse.Search
           });
         } else {
           dispatch({
-              type: "SEARCH_MOVIES_FAILURE",
+              type: "FAIL",
               error: jsonResponse.Error
           });
         }
@@ -78,10 +66,9 @@ const App = () => {
 
     const useStyles = makeStyles(() => ({
       root: {
-        backgroundColor: '#fcfcfc',
+        backgroundColor: '#FCFCFC',
       },
       results: {
-        flexGrow: 1,
         width: '90%',
         position: 'absolute',
         left: '50%',
@@ -93,9 +80,7 @@ const App = () => {
     }));
 
     const classes = useStyles();
-    const { movies, errorMessage, loading, nominations } = state;
-    console.log("MOVIES RESULT!!!")
-    console.log(movies);
+    const { movies, errorMessage, loading } = state;
 
     return (
       <div className={classes.root}>
@@ -108,7 +93,7 @@ const App = () => {
               <SearchResults movies={movies} errorMessage={errorMessage} loading={loading} />
             </Grid>
             <Grid item xs={6}>
-              <Nominations nominations={nominations} />
+              <Nominations />
             </Grid>
           </Grid>
         </div>

@@ -8,8 +8,10 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import Button from '@material-ui/core/Button';
 
 const NomineeCard = (props) => {
-  console.log("nomination!")
-  console.log(props)
+
+  const removeNomination = (e) => {
+    localStorage.removeItem(props.imdb)
+  }
 
   const useStyles = makeStyles(() => ({
     root: {
@@ -56,6 +58,7 @@ const NomineeCard = (props) => {
             size="large"
             className={classes.button}
             startIcon={<DeleteOutlineIcon />}
+            onClick={removeNomination}
           >
             REMOVE
           </Button>

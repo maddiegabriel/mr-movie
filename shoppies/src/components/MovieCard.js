@@ -38,6 +38,12 @@ const useStyles = makeStyles(() => ({
 
   const classes = useStyles();
 
+  const addNomination = (e) => {
+    e.preventDefault();
+    let movieDesc = "{ \"imdb\": \"" + props.imdb+ "\", \"title\": \"" + props.title + "\", \"year\": \"" + props.year + "\", \"poster\": \"" + props.poster + "\" }";
+    localStorage.setItem(props.imdb, movieDesc)
+  }
+
   return (
     <Card className={classes.root}>
       <div className={classes.details}>
@@ -54,6 +60,7 @@ const useStyles = makeStyles(() => ({
             size="large"
             className={classes.button}
             startIcon={<StarsIcon />}
+            onClick={addNomination}
           >
             Nominate
           </Button>
