@@ -8,7 +8,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 import MovieCard from "./MovieCard";
 
 const SearchResults = (props) => {
-  console.log(props)
 
   const useStyles = makeStyles(() => ({
     card: {
@@ -38,7 +37,7 @@ const SearchResults = (props) => {
           {(
             props.movies.map((movie, index) => (
               <ListItem className={classes.result}>
-                <MovieCard title={movie.Title} year={movie.Year} poster={movie.Poster}/>
+                <MovieCard title={movie.Title} year={movie.Year} poster={movie.Poster} />
               </ListItem>
             ))
           )}

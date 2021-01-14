@@ -8,8 +8,10 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import Button from '@material-ui/core/Button';
 
 const NomineeCard = (props) => {
+  console.log("nomination!")
+  console.log(props)
 
-const useStyles = makeStyles(() => ({
+  const useStyles = makeStyles(() => ({
     root: {
       display: 'flex',
       width: '100%',

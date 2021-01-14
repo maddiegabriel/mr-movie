@@ -10,7 +10,18 @@ import Grid from '@material-ui/core/Grid';
 const initialState = {
   loading: true,
   movies: [],
-  nominations: [],
+  nominations: [{
+    "tt1131729": {
+      "Year": 2009,
+      "Title": "first one",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMTMzMjYzMTMyM15BMl5BanBnXkFtZTcwOTk5NDA5Mg@@._V1_SX300.jpg"
+    },
+    "tt2608732": {
+      "Year": 2013,
+      "Title": "second one",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMTMzMjYzMTMyM15BMl5BanBnXkFtZTcwOTk5NDA5Mg@@._V1_SX300.jpg"
+    }
+  }],
   errorMessage: null
 };
 
@@ -26,8 +37,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: false,
-        movies: action.payload,
-        nominations: action.payload
+        movies: action.payload
       };
     case "SEARCH_MOVIES_FAILURE":
       return {
@@ -44,7 +54,7 @@ const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const search = searchTerm => {
-  
+
     dispatch({
       type: "SEARCH_MOVIES_REQUEST"
     });
@@ -65,7 +75,7 @@ const App = () => {
         }
       });
     };
-    
+
     const useStyles = makeStyles(() => ({
       root: {
         backgroundColor: '#fcfcfc',
@@ -81,12 +91,12 @@ const App = () => {
         height: '40vh',
       },
     }));
-  
+
     const classes = useStyles();
     const { movies, errorMessage, loading, nominations } = state;
     console.log("MOVIES RESULT!!!")
     console.log(movies);
-    
+
     return (
       <div className={classes.root}>
         <Header />

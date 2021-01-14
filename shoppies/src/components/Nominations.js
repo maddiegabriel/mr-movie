@@ -8,6 +8,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 import NomineeCard from "./NomineeCard";
 
 const Nominations = (props) => {
+  console.log("nominations!")
+  console.log(props)
 
   const useStyles = makeStyles(() => ({
     card: {
@@ -30,13 +32,15 @@ const Nominations = (props) => {
       <CardHeader className={classes.title} title="Your Shoppies Nominations" />
       <CardContent>
         <List className={classes.nominations}>
-          {(
-            props.nominations.map((nominee, index) => (
-              <ListItem className={classes.result}>
-                <NomineeCard title={nominee.Title} year={nominee.Year} poster={nominee.Poster}/>
-              </ListItem>
-            ))
-          )}
+          <ListItem className={classes.result}>
+            {(
+              Object.entries(props.nominations[0]).map(([key, value]) => {
+                <ListItem className={classes.result}>
+                  <NomineeCard title={value.Title} year={value.Year} poster={value.Poster} />
+                </ListItem>
+              })
+            )}
+          </ListItem>
         </List>
       </CardContent>
     </Card>

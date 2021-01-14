@@ -1,24 +1,31 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import Image from '../header.png';
+import Logo from "./logo.png";
 import "../App.css";
 
 const Header = () => {
 
   const useStyles = makeStyles(() => ({
     head: {
-      backgroundImage: `url(${Image})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
       minHeight: '46vh',
       width: '100%',
+      backgroundColor: '#DFF3F7',
+    },
+    logo: {
+      maxWidth: '65vh',
+      top: '18vh',
+      position: 'absolute',
+      left: '50%',
+      transform: 'translate(-50%, -50%)', 
     },
   }));
 
   const classes = useStyles();
 
   return (
-    <header className={classes.head}></header>
+    <div className={classes.head}>
+      <img src={Logo} alt="website logo" className={classes.logo} />
+    </div>
   );
 };
 
