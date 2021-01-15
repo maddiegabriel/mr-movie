@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from "react";
+import React, { useReducer } from "react";
 import "../App.css";
 import Header from "./Header";
 import Search from "./Search";
@@ -6,6 +6,8 @@ import SearchResults from "./SearchResults";
 import Nominations from "./Nominations";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Alert from '@material-ui/lab/Alert';
+import { BannerContextConsumer } from "./BannerContext";
 
 const initialState = {
   movies: [],
@@ -79,21 +81,33 @@ const App = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Header />
-      <Search search={search} />
-      <div className={classes.divider}></div>
-      <div className={classes.results}>
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <SearchResults movies={movies} errorMessage={errorMessage} />
-          </Grid>
-          <Grid item xs={6}>
-            <Nominations />
-          </Grid>
-        </Grid>
-      </div>
-    </div>
+    <BannerContextConsumer>
+      {context => (
+        <div className={classes.root}>
+          <Header />
+          <Search search={search} />
+          {context.banners[0]
+            ? <Alert severity="success">All done - you have nominated 5 movies for The Shoppies!</Alert>
+            : null
+          }
+          {context.banners[1]
+            ? <Alert severity="error">Hey - you already nominated 5 movies for The Shoppies! Remove a nomination to keep going.</Alert>
+            : null
+          }
+          <div className={classes.divider}></div>
+          <div className={classes.results}>
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <SearchResults movies={movies} errorMessage={errorMessage} />
+              </Grid>
+              <Grid item xs={6}>
+                <Nominations />
+              </Grid>
+            </Grid>
+          </div>
+        </div>
+      )}
+    </BannerContextConsumer>
   );
 };
 

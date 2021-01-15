@@ -4,11 +4,14 @@ import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { NominationListContextProvider } from "./components/NominationListContext";
+import { BannerContextProvider } from "./components/BannerContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <NominationListContextProvider>
-      <App />
+      <BannerContextProvider>
+        <App />
+      </BannerContextProvider>
     </NominationListContextProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -3,10 +3,11 @@ const { Provider, Consumer } = React.createContext();
 
 class NominationListContextProvider extends Component {
   state = {
-    nominationList: []
+    nominationList: [],
   };
 
   setNominationList = (newMovie) => {
+    // could update localStorage here for persistence
     this.setState(prevState => {
       return {
         nominationList: [

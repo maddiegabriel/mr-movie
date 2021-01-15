@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import StarsIcon from '@material-ui/icons/Stars';
 import Button from '@material-ui/core/Button';
 import { NominationListContextConsumer } from "./NominationListContext";
+import { BannerContextConsumer } from "./BannerContext";
 
 const MovieCard = (props) => {
 
@@ -39,46 +40,57 @@ const MovieCard = (props) => {
 
   const classes = useStyles();
 
-  const buildNomination = (imdbID, title, year, poster) => {
+  const buildNomination = (nCtx, bCtx, imdbID, title, year, poster) => {
+    if(nCtx.nominationList.length === 5) {
+      bCtx.setBanners(false, true);
+      return;
+    } else if(nCtx.nominationList.length === 4) {
+      bCtx.setBanners(true, false);
+    }
+
     let newNomination = {
       imdb: imdbID,
       title: title,
       year: year,
       poster: poster
     };
-    return JSON.stringify(newNomination);
+    nCtx.setNominationList(JSON.stringify(newNomination));
   }
 
   return (
     <NominationListContextConsumer>
-      {context => (
-        <Card className={classes.root}>
-          <div className={classes.details}>
-            <CardContent className={classes.content}>
-              <Typography component="h5" variant="h5">
-                {props.title}
-              </Typography>
-              <Typography variant="subtitle1" color="textSecondary">
-                {props.year}
-              </Typography>
-              <Button
-                variant="contained"
-                size="large"
-                color="primary"
-                className={classes.button}
-                startIcon={<StarsIcon />}
-                onClick={() => context.setNominationList(buildNomination(props.imdb, props.title, props.year, props.poster))}
-              >
-                Nominate
-              </Button>
-            </CardContent>
-          </div>
-          <CardMedia
-            className={classes.image}
-            image={props.poster}
-            title="Movie poster"
-          />
-        </Card>
+      {nomContext => (
+        <BannerContextConsumer>
+          {bannerContext => (
+            <Card className={classes.root}>
+              <div className={classes.details}>
+                <CardContent className={classes.content}>
+                  <Typography component="h5" variant="h5">
+                    {props.title}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {props.year}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    startIcon={<StarsIcon />}
+                    onClick={() => buildNomination(nomContext, bannerContext,  props.imdb, props.title, props.year, props.poster)}
+                  >
+                    Nominate
+                  </Button>
+                </CardContent>
+              </div>
+              <CardMedia
+                className={classes.image}
+                image={props.poster}
+                title="Movie poster"
+              />
+            </Card>
+          )}
+        </BannerContextConsumer>
       )}
     </NominationListContextConsumer>
   );

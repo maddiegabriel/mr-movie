@@ -29,7 +29,7 @@ const Nominations = (props) => {
   let nomsList = [];
   const formatList = (noms) => {
     nomsList = [];
-    for (let value of Object.values(noms)) {
+    for(let value of Object.values(noms)) {
       nomsList.push(JSON.parse(value));
     }
   }
