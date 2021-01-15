@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 import "../App.css";
 import Header from "./Header";
 import Search from "./Search";
@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 const initialState = {
-  loading: true,
   movies: [],
   errorMessage: null
 };
@@ -18,19 +17,16 @@ const reducer = (state, action) => {
     case "REQ":
       return {
         ...state,
-        loading: true,
         errorMessage: null
       };
     case "PASS":
       return {
         ...state,
-        loading: false,
         movies: action.payload
       };
     case "FAIL":
       return {
         ...state,
-        loading: false,
         errorMessage: action.error
       };
     default:
@@ -40,6 +36,29 @@ const reducer = (state, action) => {
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { movies, errorMessage } = state;
+  // if(!localStorage.getItem("shoppies_nominees")) {
+  //   localStorage.setItem("shoppies_nominees", "{}")
+  // }
+  // const [nominees, setNominees] = useState(JSON.parse(localStorage.getItem("shoppies_nominees")));
+  // const { nominationList } = useContext(NominationListContext)
+
+  // const [nominationList, setNominationList] = useState([]);
+  // function updateList(newMovie) {
+  //   console.log('updateList')
+  //   console.log(newMovie)
+  //   let list = nominationList;
+  //   list.push(newMovie)
+  //   setNominationList(list)
+  // }
+
+  // update nominees state value when localStorage.nominees changes
+  // useEffect(() => {
+  //   window.addEventListener('storage', () => {
+  //     console.log("CHANGE DETECTED")
+  //     setNominees(JSON.parse(localStorage.shoppies_nominees)) 
+  //   });
+  // }, [])
 
   const search = searchTerm => {
 
@@ -62,43 +81,42 @@ const App = () => {
           });
         }
       });
-    };
+  };
 
-    const useStyles = makeStyles(() => ({
-      root: {
-        backgroundColor: '#FCFCFC',
-      },
-      results: {
-        width: '90%',
-        position: 'absolute',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',  
-      },
-      divider: {
-        height: '40vh',
-      },
-    }));
+  const useStyles = makeStyles(() => ({
+    root: {
+      backgroundColor: '#FCFCFC',
+    },
+    results: {
+      width: '90%',
+      position: 'absolute',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',  
+    },
+    divider: {
+      height: '40vh',
+    },
+  }));
 
-    const classes = useStyles();
-    const { movies, errorMessage, loading } = state;
+  const classes = useStyles();
 
-    return (
-      <div className={classes.root}>
-        <Header />
-        <Search search={search} />
-        <div className={classes.divider}></div>
-        <div className={classes.results}>
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
-              <SearchResults movies={movies} errorMessage={errorMessage} loading={loading} />
-            </Grid>
-            <Grid item xs={6}>
-              <Nominations />
-            </Grid>
+  return (
+    <div className={classes.root}>
+      <Header />
+      <Search search={search} />
+      <div className={classes.divider}></div>
+      <div className={classes.results}>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <SearchResults movies={movies} errorMessage={errorMessage} />
           </Grid>
-        </div>
+          <Grid item xs={6}>
+            <Nominations />
+          </Grid>
+        </Grid>
       </div>
-    );
+    </div>
+  );
 };
 
 export default App;

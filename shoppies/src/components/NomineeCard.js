@@ -10,7 +10,11 @@ import Button from '@material-ui/core/Button';
 const NomineeCard = (props) => {
 
   const removeNomination = (e) => {
-    localStorage.removeItem(props.imdb)
+    e.preventDefault();
+    let stored_noms = JSON.parse(localStorage.getItem("shoppies_nominees"))
+    let removeKey = props.imdb;
+    delete stored_noms[removeKey];
+    localStorage.setItem("shoppies_nominees", JSON.stringify(stored_noms));
   }
 
   const useStyles = makeStyles(() => ({

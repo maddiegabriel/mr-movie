@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -6,10 +6,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import StarsIcon from '@material-ui/icons/Stars';
 import Button from '@material-ui/core/Button';
+import { NominationListContextConsumer } from "./NominationListContext";
 
 const MovieCard = (props) => {
 
-const useStyles = makeStyles(() => ({
+  const useStyles = makeStyles(() => ({
     root: {
       display: 'flex',
       width: '100%',
@@ -38,40 +39,38 @@ const useStyles = makeStyles(() => ({
 
   const classes = useStyles();
 
-  const addNomination = (e) => {
-    e.preventDefault();
-    let movieDesc = "{ \"imdb\": \"" + props.imdb+ "\", \"title\": \"" + props.title + "\", \"year\": \"" + props.year + "\", \"poster\": \"" + props.poster + "\" }";
-    localStorage.setItem(props.imdb, movieDesc)
-  }
-
   return (
-    <Card className={classes.root}>
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            {props.title}
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            {props.year}
-          </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            className={classes.button}
-            startIcon={<StarsIcon />}
-            onClick={addNomination}
-          >
-            Nominate
-          </Button>
-        </CardContent>
-      </div>
-      <CardMedia
-        className={classes.image}
-        image={props.poster}
-        title="Movie poster"
-      />
-    </Card>
+    <NominationListContextConsumer>
+      {context => (
+        <Card className={classes.root}>
+          <div className={classes.details}>
+            <CardContent className={classes.content}>
+              <Typography component="h5" variant="h5">
+                {props.title}
+              </Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {props.year}
+              </Typography>
+              <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                className={classes.button}
+                startIcon={<StarsIcon />}
+                onClick={() => context.setNominationList("{ imdb: props.imdb, title: props.title, year: props.year, poster: props.poster }")}
+              >
+                Nominate
+              </Button>
+            </CardContent>
+          </div>
+          <CardMedia
+            className={classes.image}
+            image={props.poster}
+            title="Movie poster"
+          />
+        </Card>
+      )}
+    </NominationListContextConsumer>
   );
 }
 

@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import { NominationListContextProvider } from "./components/NominationListContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <NominationListContextProvider>
+      <App />
+    </NominationListContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -36,8 +36,8 @@ const SearchResults = (props) => {
         <List className={classes.results}>
           {(
             props.movies.map((movie, index) => (
-              <ListItem className={classes.result}>
-                <MovieCard imdb={movie.imdbID} title={movie.Title} year={movie.Year} poster={movie.Poster}/>
+              <ListItem key={index} className={classes.result}>
+                <MovieCard key={index} imdb={movie.imdbID} title={movie.Title} year={movie.Year} poster={movie.Poster} setNominees={props.setNominees}/>
               </ListItem>
             ))
           )}
