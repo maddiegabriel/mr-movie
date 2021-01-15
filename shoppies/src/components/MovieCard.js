@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -39,6 +39,16 @@ const MovieCard = (props) => {
 
   const classes = useStyles();
 
+  const buildNomination = (imdbID, title, year, poster) => {
+    let newNomination = {
+      imdb: imdbID,
+      title: title,
+      year: year,
+      poster: poster
+    };
+    return JSON.stringify(newNomination);
+  }
+
   return (
     <NominationListContextConsumer>
       {context => (
@@ -57,7 +67,7 @@ const MovieCard = (props) => {
                 color="primary"
                 className={classes.button}
                 startIcon={<StarsIcon />}
-                onClick={() => context.setNominationList("{ imdb: props.imdb, title: props.title, year: props.year, poster: props.poster }")}
+                onClick={() => context.setNominationList(buildNomination(props.imdb, props.title, props.year, props.poster))}
               >
                 Nominate
               </Button>

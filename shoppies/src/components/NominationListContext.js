@@ -3,14 +3,10 @@ const { Provider, Consumer } = React.createContext();
 
 class NominationListContextProvider extends Component {
   state = {
-    nominationList: [
-        "{ imdb: 1234 }",
-        "{ imdb: 5678 }"
-    ]
+    nominationList: []
   };
 
   setNominationList = (newMovie) => {
-    console.log('inside setNominationList')
     this.setState(prevState => {
       return {
         nominationList: [

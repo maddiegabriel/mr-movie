@@ -37,28 +37,6 @@ const reducer = (state, action) => {
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { movies, errorMessage } = state;
-  // if(!localStorage.getItem("shoppies_nominees")) {
-  //   localStorage.setItem("shoppies_nominees", "{}")
-  // }
-  // const [nominees, setNominees] = useState(JSON.parse(localStorage.getItem("shoppies_nominees")));
-  // const { nominationList } = useContext(NominationListContext)
-
-  // const [nominationList, setNominationList] = useState([]);
-  // function updateList(newMovie) {
-  //   console.log('updateList')
-  //   console.log(newMovie)
-  //   let list = nominationList;
-  //   list.push(newMovie)
-  //   setNominationList(list)
-  // }
-
-  // update nominees state value when localStorage.nominees changes
-  // useEffect(() => {
-  //   window.addEventListener('storage', () => {
-  //     console.log("CHANGE DETECTED")
-  //     setNominees(JSON.parse(localStorage.shoppies_nominees)) 
-  //   });
-  // }, [])
 
   const search = searchTerm => {
 
