@@ -6,15 +6,18 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import Button from '@material-ui/core/Button';
+import { NominationListContextConsumer } from "./NominationListContext";
 
 const NomineeCard = (props) => {
 
-  const removeNomination = (e) => {
-    // e.preventDefault();
-    // let stored_noms = JSON.parse(localStorage.getItem("shoppies_nominees"))
-    // let removeKey = props.imdb;
-    // delete stored_noms[removeKey];
-    // localStorage.setItem("shoppies_nominees", JSON.stringify(stored_noms));
+  const removeNomination = (ctx, toRemove) => {
+    let newList = [];
+    for(let i=0; i < ctx.nominationList.length; i++) {
+      if(JSON.parse(ctx.nominationList[i]).imdb != toRemove) {
+        newList.push(ctx.nominationList[i]);
+      }
+    }
+    ctx.setNominationList(newList);
   }
 
   const useStyles = makeStyles(() => ({
@@ -47,33 +50,37 @@ const NomineeCard = (props) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            {props.title}
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            {props.year}
-          </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            className={classes.button}
-            startIcon={<DeleteOutlineIcon />}
-            onClick={removeNomination}
-          >
-            REMOVE
-          </Button>
-        </CardContent>
-      </div>
-      <CardMedia
-        className={classes.image}
-        image={props.poster}
-        title="Movie poster"
-      />
-    </Card>
+    <NominationListContextConsumer>
+      {context => (
+        <Card className={classes.root}>
+          <div className={classes.details}>
+            <CardContent className={classes.content}>
+              <Typography component="h5" variant="h5">
+                {props.title}
+              </Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {props.year}
+              </Typography>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                className={classes.button}
+                startIcon={<DeleteOutlineIcon />}
+                onClick={() => removeNomination(context, props.imdb)}
+              >
+                REMOVE
+              </Button>
+            </CardContent>
+          </div>
+          <CardMedia
+            className={classes.image}
+            image={props.poster}
+            title="Movie poster"
+          />
+        </Card>
+      )}
+    </NominationListContextConsumer>
   );
 }
 

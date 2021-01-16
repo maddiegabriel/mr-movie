@@ -27,10 +27,10 @@ const Nominations = (props) => {
   const classes = useStyles();
 
   let nomsList = [];
-  const formatList = (noms) => {
+  const formatList = (ctxNoms) => {
     nomsList = [];
-    for(let value of Object.values(noms)) {
-      nomsList.push(JSON.parse(value));
+    for(let i=0; i < ctxNoms.length; i++) {
+      nomsList.push(JSON.parse(ctxNoms[i]));
     }
   }
 

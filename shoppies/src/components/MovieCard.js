@@ -41,6 +41,8 @@ const MovieCard = (props) => {
   const classes = useStyles();
 
   const buildNomination = (nCtx, bCtx, imdbID, title, year, poster) => {
+    console.log('in buildNomination')
+
     if(nCtx.nominationList.length === 5) {
       bCtx.setBanners(false, true);
       return;
@@ -54,7 +56,18 @@ const MovieCard = (props) => {
       year: year,
       poster: poster
     };
-    nCtx.setNominationList(JSON.stringify(newNomination));
+
+    let nomsList = [];  
+    if(nCtx.nominationList.length === 0) {
+      nomsList.push(JSON.stringify(newNomination));
+      nCtx.setNominationList(nomsList);
+    } else {
+      for(let i=0; i < nCtx.nominationList.length; i++) {
+        nomsList.push(nCtx.nominationList[i]);
+      }
+      nomsList.push(JSON.stringify(newNomination));
+      nCtx.setNominationList(nomsList);
+    }
   }
 
   return (
@@ -77,7 +90,7 @@ const MovieCard = (props) => {
                     color="primary"
                     className={classes.button}
                     startIcon={<StarsIcon />}
-                    onClick={() => buildNomination(nomContext, bannerContext,  props.imdb, props.title, props.year, props.poster)}
+                    onClick={() => buildNomination(nomContext, bannerContext, props.imdb, props.title, props.year, props.poster)}
                   >
                     Nominate
                   </Button>

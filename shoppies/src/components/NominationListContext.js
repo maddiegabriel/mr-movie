@@ -6,14 +6,13 @@ class NominationListContextProvider extends Component {
     nominationList: [],
   };
 
-  setNominationList = (newMovie) => {
+  setNominationList = (newList) => {
     // could update localStorage here for persistence
+    // console.log(this.state.nominationList)
+  
     this.setState(prevState => {
       return {
-        nominationList: [
-            ...this.state.nominationList,
-            newMovie
-        ]
+        nominationList: newList
       };
     });
   };
