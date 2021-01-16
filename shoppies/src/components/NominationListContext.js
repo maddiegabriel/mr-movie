@@ -7,8 +7,7 @@ class NominationListContextProvider extends Component {
   };
 
   setNominationList = (newList) => {
-    // could update localStorage here for persistence
-  
+    // could update localStorage here for persistence  
     this.setState(prevState => {
       return {
         nominationList: newList

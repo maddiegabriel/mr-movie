@@ -1,12 +1,11 @@
 import React, { useReducer } from "react";
-import "../App.css";
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Alert from '@material-ui/lab/Alert';
 import Header from "./Header";
 import Search from "./Search";
 import SearchResults from "./SearchResults";
 import Nominations from "./Nominations";
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Alert from '@material-ui/lab/Alert';
 import { BannerContextConsumer } from "./BannerContext";
 
 const initialState = {
@@ -24,11 +23,13 @@ const reducer = (state, action) => {
     case "PASS":
       return {
         ...state,
-        movies: action.payload
+        movies: action.payload,
+        errorMessage: null
       };
     case "FAIL":
       return {
         ...state,
+        movies: null,
         errorMessage: action.error
       };
     default:
@@ -41,7 +42,6 @@ const App = () => {
   const { movies, errorMessage } = state;
 
   const search = searchTerm => {
-
     dispatch({
       type: "REQ"
     });
@@ -97,7 +97,7 @@ const App = () => {
           <div className={classes.divider}></div>
           <div className={classes.results}>
             <Grid container spacing={3}>
-              <Grid item xs={6}>
+              <Grid item xs={6} >
                 <SearchResults movies={movies} errorMessage={errorMessage} />
               </Grid>
               <Grid item xs={6}>

@@ -25,13 +25,12 @@ const Nominations = (props) => {
       overflow: 'scroll',
     },
     sadOscar: {
-      maxWidth: '30vh',
-    },
-    sadOscarWrapper: {
-      position: 'absolute',
-      left: '50%',
-      transform: 'translate(-50%, -50%)', 
-      top: '45%',
+      width: '32%',
+      minWidth: '20vh',
+      display: 'block',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginTop: '8%',
     },
     sadOscarText: {
       textAlign: 'center',
@@ -58,10 +57,12 @@ const Nominations = (props) => {
           <List className={classes.nominations}>
               { // Conditional rendering based on if nominations exist
                 (context.nominationList.length === 0)
-                  ? <div className={classes.sadOscarWrapper}>
+                  ? <div>
                       <img src={SadOscar} alt="sad oscar" className={classes.sadOscar} />
-                      <Typography className={classes.sadOscarText} component="h5" variant="h5">No nominations yet!</Typography>
-                      <Typography className={classes.sadOscarText} variant="subtitle1" color="textSecondary">Use the search bar to get started.</Typography>
+                      <div className={classes.sadOscarText}>
+                        <Typography component="h5" variant="h5">No nominations yet!</Typography>
+                        <Typography variant="subtitle1" color="textSecondary">Use the search bar to get started.</Typography>
+                      </div>
                     </div>
                   : nomsList.map((movie, index) => (
                       <ListItem key={index} className={classes.result}>
@@ -69,7 +70,7 @@ const Nominations = (props) => {
                       </ListItem>
                     ))
               }
-              </List>
+            </List>
           </CardContent>
         </Card>
       )}

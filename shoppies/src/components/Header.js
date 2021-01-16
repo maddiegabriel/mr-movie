@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Logo from "./logo.png";
-import "../App.css";
 
 const Header = () => {
 
@@ -9,7 +8,7 @@ const Header = () => {
     head: {
       minHeight: '46vh',
       width: '100%',
-      backgroundColor: '#DFF3F7',
+      backgroundColor: '#eaeef3',
     },
     logo: {
       maxWidth: '65vh',
