@@ -22,7 +22,6 @@ const Search = (props) => {
     form: {
       padding: '10px 4px',
       display: 'flex',
-      alignItems: 'center',
       width: '70%',
       position: 'absolute',
       left: '50%',

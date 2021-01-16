@@ -59,12 +59,8 @@ const NomineeCard = (props) => {
             <Card className={classes.root}>
               <div className={classes.details}>
                 <CardContent className={classes.content}>
-                  <Typography component="h5" variant="h5">
-                    {props.title}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {props.year}
-                  </Typography>
+                  <Typography component="h5" variant="h5">{props.title}</Typography>
+                  <Typography variant="subtitle1" color="textSecondary">{props.year}</Typography>
                   <Button
                     variant="contained"
                     color="primary"

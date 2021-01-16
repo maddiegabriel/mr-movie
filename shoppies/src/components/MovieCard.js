@@ -41,7 +41,6 @@ const MovieCard = (props) => {
   const classes = useStyles();
 
   const buildNomination = (nCtx, bCtx, imdbID, title, year, poster) => {
-
     // Set the notification banners
     if(nCtx.nominationList.length === 5) {
       bCtx.setBanners(false, true);
@@ -69,7 +68,7 @@ const MovieCard = (props) => {
   const buttonState = (nCtx, imdbID) => {
     for(let i=0; i < nCtx.nominationList.length; i++) {
       if(JSON.parse(nCtx.nominationList[i]).imdb === imdbID) {
-        return true; // disable button
+        return true; // disable nominate button
       }
     }
     return false;
@@ -83,12 +82,8 @@ const MovieCard = (props) => {
             <Card className={classes.root}>
               <div className={classes.details}>
                 <CardContent className={classes.content}>
-                  <Typography component="h5" variant="h5">
-                    {props.title}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {props.year}
-                  </Typography>
+                  <Typography component="h5" variant="h5">{props.title}</Typography>
+                  <Typography variant="subtitle1" color="textSecondary">{props.year}</Typography>
                   <Button
                     variant="contained"
                     size="large"

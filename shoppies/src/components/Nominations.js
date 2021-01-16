@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import { NominationListContextConsumer } from "./NominationListContext";
 import NomineeCard from "./NomineeCard";
+import SadOscar from "./sad.png";
+import Typography from '@material-ui/core/Typography';
 
 const Nominations = (props) => {
 
@@ -21,6 +23,18 @@ const Nominations = (props) => {
     nominations: {
       height: '45vh',
       overflow: 'scroll',
+    },
+    sadOscar: {
+      maxWidth: '30vh',
+    },
+    sadOscarWrapper: {
+      position: 'absolute',
+      left: '50%',
+      transform: 'translate(-50%, -50%)', 
+      top: '45%',
+    },
+    sadOscarText: {
+      textAlign: 'center',
     }
   }));
 
@@ -41,15 +55,21 @@ const Nominations = (props) => {
           {formatList(context.nominationList)}
           <CardHeader className={classes.title} title="Your Shoppies Nominations" />
           <CardContent>
-            <List className={classes.nominations}>
-              {(
-                nomsList.map((movie, index) => (
-                  <ListItem key={index} className={classes.result}>
-                    <NomineeCard key={index} imdb={movie.imdb} title={movie.title} year={movie.year} poster={movie.poster} />
-                  </ListItem>
-                ))
-              )}
-            </List>
+          <List className={classes.nominations}>
+              { // Conditional rendering based on if nominations exist
+                (context.nominationList.length === 0)
+                  ? <div className={classes.sadOscarWrapper}>
+                      <img src={SadOscar} alt="sad oscar" className={classes.sadOscar} />
+                      <Typography className={classes.sadOscarText} component="h5" variant="h5">No nominations yet!</Typography>
+                      <Typography className={classes.sadOscarText} variant="subtitle1" color="textSecondary">Use the search bar to get started.</Typography>
+                    </div>
+                  : nomsList.map((movie, index) => (
+                      <ListItem key={index} className={classes.result}>
+                        <NomineeCard key={index} imdb={movie.imdb} title={movie.title} year={movie.year} poster={movie.poster} />
+                      </ListItem>
+                    ))
+              }
+              </List>
           </CardContent>
         </Card>
       )}
