@@ -8,7 +8,6 @@ class BannerContextProvider extends Component {
   };
 
   setBanners = (full, error) => {
-    // could update localStorage here
     this.setState(prevState => {
       return {
         banners: [

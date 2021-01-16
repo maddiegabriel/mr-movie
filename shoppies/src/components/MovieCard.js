@@ -41,8 +41,8 @@ const MovieCard = (props) => {
   const classes = useStyles();
 
   const buildNomination = (nCtx, bCtx, imdbID, title, year, poster) => {
-    console.log('in buildNomination')
 
+    // Set the notification banners
     if(nCtx.nominationList.length === 5) {
       bCtx.setBanners(false, true);
       return;
@@ -50,6 +50,7 @@ const MovieCard = (props) => {
       bCtx.setBanners(true, false);
     }
 
+    // Add new movie to NominationListContext state
     let newNomination = {
       imdb: imdbID,
       title: title,
@@ -58,16 +59,20 @@ const MovieCard = (props) => {
     };
 
     let nomsList = [];  
-    if(nCtx.nominationList.length === 0) {
-      nomsList.push(JSON.stringify(newNomination));
-      nCtx.setNominationList(nomsList);
-    } else {
-      for(let i=0; i < nCtx.nominationList.length; i++) {
-        nomsList.push(nCtx.nominationList[i]);
-      }
-      nomsList.push(JSON.stringify(newNomination));
-      nCtx.setNominationList(nomsList);
+    for(let i=0; i < nCtx.nominationList.length; i++) {
+      nomsList.push(nCtx.nominationList[i]);
     }
+    nomsList.push(JSON.stringify(newNomination));
+    nCtx.setNominationList(nomsList);
+  }
+
+  const buttonState = (nCtx, imdbID) => {
+    for(let i=0; i < nCtx.nominationList.length; i++) {
+      if(JSON.parse(nCtx.nominationList[i]).imdb === imdbID) {
+        return true; // disable button
+      }
+    }
+    return false;
   }
 
   return (
@@ -90,6 +95,7 @@ const MovieCard = (props) => {
                     color="primary"
                     className={classes.button}
                     startIcon={<StarsIcon />}
+                    disabled={buttonState(nomContext, props.imdb)}
                     onClick={() => buildNomination(nomContext, bannerContext, props.imdb, props.title, props.year, props.poster)}
                   >
                     Nominate
