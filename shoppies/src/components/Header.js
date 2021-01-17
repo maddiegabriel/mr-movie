@@ -8,7 +8,7 @@ const Header = () => {
     head: {
       minHeight: '46vh',
       width: '100%',
-      backgroundColor: '#eaeef3',
+      backgroundColor: '#cae6ef',
     },
     logo: {
       maxWidth: '65vh',
