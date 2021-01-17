@@ -3,9 +3,9 @@
 
 Hey there - welcome to *The Shoppies*, built with love by Maddie G!
 
-You can see my app online here: **[www.maddieg.ca/shoppies.](www.maddieg.ca/shoppies)**
+You can see my app online here: **[www.maddieg.ca/shoppies.](https://www.maddieg.ca/shoppies)**
 
-And read more about me here: [www.maddieg.ca/shopify.](www.maddieg.ca/shopify)
+And read more about me here: [www.maddieg.ca/shopify.](https://www.maddieg.ca/shopify)
 
 ### What I Did
 I built [The Shoppies](www.maddieg.ca/shoppies)  for the 2021 Shopify Front-End Developer Intern Challenge. It's an app to help manage movie nominations for the upcoming Shoppies awards!
