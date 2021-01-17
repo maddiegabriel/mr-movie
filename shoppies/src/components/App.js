@@ -46,7 +46,7 @@ const App = () => {
       type: "REQ"
     });
 
-    fetch(`http://www.omdbapi.com/?apikey=2259721&s=${searchTerm}&type=movie`)
+    fetch(`https://www.omdbapi.com/?apikey=2259721&s=${searchTerm}&type=movie`)
       .then(response => response.json())
       .then(jsonResponse => {
         if (jsonResponse.Response === "True") {
