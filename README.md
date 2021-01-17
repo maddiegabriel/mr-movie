@@ -1,4 +1,4 @@
-![logo](https://www.maddieg.ca/shoppies/static/media/logo.698e2c2a.png)
+<img src="https://www.maddieg.ca/shoppies/static/media/logo.698e2c2a.png"  width="700" >
 
 Hey there - welcome to *The Shoppies*, built with love by Maddie G!
 You can see my app online at: [www.maddieg.ca/shoppies.](www.maddieg.ca/shoppies)
@@ -9,13 +9,16 @@ I built `The Shoppies`  for the 2021 Shopify Front-End Developer Intern Challeng
 *The Shoppies* allows a user to...
 
 Search the [OMDB](http://www.omdbapi.com/) for movies:
-![shop1](https://www.maddieg.ca/shopify/assets/img/portfolio/shop/1.png)
+
+<img src="https://www.maddieg.ca/shopify/assets/img/portfolio/shop/1.png"  width="650" >
 
 Nominate their favourite films, view their nomination list, and remove nominations if they change their mind:
-![shop2](https://www.maddieg.ca/shopify/assets/img/portfolio/shop/2.png)
 
-Once they've selected 5 nominees, they're notified with a super-cool alert! 
-![shop3](https://www.maddieg.ca/shopify/assets/img/portfolio/shop/3.png)
+<img src="https://www.maddieg.ca/shopify/assets/img/portfolio/shop/2.png"  width="650" >
+
+Once they've selected 5 nominees, they're notified with a super-cool alert!
+
+<img src="https://www.maddieg.ca/shopify/assets/img/portfolio/shop/3.png"  width="650" >
 
 ### How I Did It
 <i>The Shoppies</i>  is a React app. I took advantage of the [Material-UI](https://material-ui.com/) framework for some nifty UI components. To keep things simple, I used the [React Context API](https://reactjs.org/docs/context.html) to store the user's nomination data in this format:
