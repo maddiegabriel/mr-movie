@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/mr-movie/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/mr-movie/static/js/main.df22d542.chunk.js",
+    "main.js.map": "/mr-movie/static/js/main.df22d542.chunk.js.map",
+    "runtime-main.js": "/mr-movie/static/js/runtime-main.34ce2b4a.js",
+    "runtime-main.js.map": "/mr-movie/static/js/runtime-main.34ce2b4a.js.map",
+    "static/js/2.5131e768.chunk.js": "/mr-movie/static/js/2.5131e768.chunk.js",
+    "static/js/2.5131e768.chunk.js.map": "/mr-movie/static/js/2.5131e768.chunk.js.map",
+    "static/js/3.4a332c93.chunk.js": "/mr-movie/static/js/3.4a332c93.chunk.js",
+    "static/js/3.4a332c93.chunk.js.map": "/mr-movie/static/js/3.4a332c93.chunk.js.map",
+    "index.html": "/mr-movie/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/mr-movie/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.5131e768.chunk.js.LICENSE.txt": "/mr-movie/static/js/2.5131e768.chunk.js.LICENSE.txt",
+    "static/media/logo.f41ab86e.png": "/mr-movie/static/media/logo.f41ab86e.png",
+    "static/media/sad.3963c84a.png": "/mr-movie/static/media/sad.3963c84a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.34ce2b4a.js",
+    "static/js/2.5131e768.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.df22d542.chunk.js"
+  ]
+}
