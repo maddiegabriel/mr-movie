@@ -87,11 +87,11 @@ const App = () => {
           <Header />
           <Search search={search} />
           {context.banners[0]
-            ? <Alert severity="success">All done - you have nominated 5 movies for The Shoppies!</Alert>
+            ? <Alert severity="success">All done - you have favourited 5 movies!</Alert>
             : null
           }
           {context.banners[1]
-            ? <Alert severity="error">Hey - you already nominated 5 movies for The Shoppies! Remove a nomination to keep going.</Alert>
+            ? <Alert severity="error">Hey - you already favourited 5 movies! Remove a nomination to keep going.</Alert>
             : null
           }
           <div className={classes.divider}></div>

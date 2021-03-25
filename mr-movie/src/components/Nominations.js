@@ -52,7 +52,7 @@ const Nominations = (props) => {
       {context => (
         <Card className={classes.card}>
           {formatList(context.nominationList)}
-          <CardHeader className={classes.title} title="Your Shoppies Nominations" />
+          <CardHeader className={classes.title} title="Your Favourite Movies" />
           <CardContent>
           <List className={classes.nominations}>
               { // Conditional rendering based on if nominations exist
